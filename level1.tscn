@@ -1,0 +1,84 @@
+[gd_scene load_steps=7 format=4 uid="uid://bpg8rqcojlaa8"]
+
+[ext_resource type="Texture2D" uid="uid://bdb7ref8ue364" path="res://sprites/TileSheet_V2.png" id="1_nflxa"]
+[ext_resource type="Texture2D" uid="uid://dkadd1gjk3ro8" path="res://background.png" id="1_trl4w"]
+[ext_resource type="PackedScene" uid="uid://b4q1nxvw64nl2" path="res://player.tscn" id="2_judhh"]
+[ext_resource type="PackedScene" uid="uid://dsf2vadkpiaro" path="res://enemy.tscn" id="3_52fcv"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mmrbh"]
+texture = ExtResource("1_nflxa")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -30.5, 64, -32.5, 64, 5.65686, 64, 50, -7.5, 50)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -32, 64, -30.4056, 64, 64, -64, 64)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -32, 6.25, -32, 7.75, 46, -64, 46)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+
+[sub_resource type="TileSet" id="TileSet_fravh"]
+tile_size = Vector2i(128, 128)
+physics_layer_0/collision_layer = 1
+sources/3 = SubResource("TileSetAtlasSource_mmrbh")
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(485, 351)
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(218, 1264)
+scale = Vector2(27.0953, 15.75)
+texture = ExtResource("1_trl4w")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Background"]
+position = Vector2(-8.98681, -35.746)
+scale = Vector2(0.0369068, 0.0634921)
+tile_map_data = PackedByteArray("AAD8//3/AwACAAIAAAD8//7/AwACAAIAAAD8////AwACAAIAAAD8/wAAAwACAAIAAAD8/wEAAwACAAIAAAAFAP3/AwACAAIAAAAFAP7/AwACAAIAAAAFAP//AwACAAIAAAAFAAAAAwACAAIAAAAFAAEAAwACAAIAAAAFAAIAAwABAAIAAAD8/wIAAwAAAAIAAAD8//z/AwAAAAEAAAAEAPz/AwABAAEAAAADAPz/AwABAAEAAAACAPz/AwAAAAIAAAABAPz/AwAAAAAAAGAAAPz/AwAAAAAAAGD///z/AwABAAIAAAD+//z/AwABAAEAAAD9//z/AwABAAEAAAD9/wIAAwABAAEAAAD//wIAAwACAAEAAAAAAAIAAwAAAAAAAAABAAIAAwAAAAAAAAACAAIAAwAAAAEAAAADAAIAAwABAAEAAAAEAAIAAwABAAEAAAAFAPz/AwACAAEAAAD//wEAAwADAAAAAAD//wAAAwAAAAAAAAAAAAAAAwAAAAAAAAABAAAAAwAAAAAAAAABAP//AwAAAAAAAAACAP//AwABAAAAAAACAP7/AwAAAAAAAAAEAAEAAwADAAAAAAADAAAAAwAAAAAAAAACAAAAAwAAAAAAAAAAAP//AwAAAAAAAAD///7/AwAAAAAAAAD+//7/AwAAAAAAAAD9//3/AwAAAAAAAAAAAP3/AwAAAAAAAAABAP3/AwAAAAAAAAABAP7/AwAAAAAAAAADAP//AwACAAAAAAAEAP//AwADAAAAAAAEAAAAAwAAAAAAAAAEAP7/AwAAAAAAAAAEAP3/AwAAAAAAAAADAP3/AwAAAAAAAAADAP7/AwAAAAAAAAADAAEAAwACAAAAAAACAAEAAwABAAAAAAABAAEAAwAAAAAAAAAAAAEAAwAAAAAAAAD+/wAAAwAAAAAAAAD9/wAAAwAAAAAAAAD9////AwABAAAAAAD9//7/AwAAAAAAAAD+//3/AwAAAAAAAAD///3/AwAAAAAAAAAAAP7/AwAAAAAAAAACAP3/AwAAAAAAAAD/////AwADAAAAAAD+////AwACAAAAAAD+/wIAAwABAAEAAAD+/wEAAwACAAAAAAD9/wEAAwABAAAAAAD//wMAAwACAAIAAAACAAMAAwACAAIAAAACAAQAAwACAAIAAAACAAUAAwACAAIAAAD//wQAAwACAAIAAAD//wUAAwACAAIAAAACAAYAAwABAAIAAAD//wYAAwAAAAIAAAABAAYAAwABAAEAAAAAAAYAAwABAAEAAAABAAUAAwAAAAAAAAAAAAUAAwAAAAAAAAAAAAQAAwAAAAAAAAABAAQAAwAAAAAAAAABAAMAAwAAAAAAAAAAAAMAAwAAAAAAAAAAAPv/AwAAAAAAAGABAPv/AwAAAAAAAGACAPv/AwACAAIAAAACAPr/AwACAAIAAAACAPn/AwACAAEAAAD///n/AwAAAAEAAAABAPn/AwAAAAAAAGAAAPn/AwAAAAAAAGD///r/AwACAAIAAAD///v/AwACAAIAAAAAAPr/AwAAAAAAAGABAPr/AwAAAAAAAGD+//n/AwABAAEAAAD9//n/AwABAAEAAAADAPn/AwABAAEAAAAEAPn/AwABAAEAAAAFAPj/AwACAAIAAAAFAPf/AwACAAIAAAAFAPb/AwACAAIAAAAFAPX/AwACAAIAAAAFAPT/AwACAAIAAAAFAPP/AwACAAIAAAD8//j/AwACAAIAAAD8//f/AwACAAIAAAD8//b/AwACAAIAAAD8//X/AwACAAIAAAD8//T/AwACAAIAAAD8//P/AwACAAIAAAD8//L/AwACAAIAAAAFAPL/AwACAAIAAAD9//H/AwABAAEAAAD+//H/AwABAAEAAAD///H/AwABAAEAAAAAAPH/AwABAAEAAAABAPH/AwABAAEAAAACAPH/AwABAAEAAAADAPH/AwABAAEAAAAEAPH/AwABAAEAAAAFAPH/AwACAAEAAAD8//n/AwAAAAIAAAD8//H/AwAAAAEAAAAFAPn/AwABAAIAAAD9//j/AwABAAAAAAD+//f/AwAAAAAAAAD///b/AwADAAAAAAAAAPX/AwAAAAAAAAABAPX/AwAAAAAAAAACAPT/AwABAAAAAAADAPP/AwAAAAAAAAAEAPL/AwAAAAAAAAD9//L/AwAAAAAAAAD+//L/AwAAAAAAAAD///L/AwAAAAAAAAAAAPL/AwAAAAAAAAABAPL/AwAAAAAAAAACAPL/AwAAAAAAAAADAPL/AwAAAAAAAAAEAPP/AwAAAAAAAAACAPP/AwAAAAAAAAABAPP/AwAAAAAAAAAAAPP/AwAAAAAAAAD///P/AwAAAAAAAAD+//P/AwAAAAAAAAD9//P/AwAAAAAAAAD9//T/AwABAAAAAAD+//T/AwACAAAAAAD///T/AwADAAAAAAAAAPT/AwAAAAAAAAABAPT/AwAAAAAAAAADAPT/AwACAAAAAAAEAPT/AwADAAAAAAAEAPb/AwADAAAAAAADAPb/AwACAAAAAAACAPb/AwABAAAAAAABAPb/AwAAAAAAAAAAAPb/AwAAAAAAAAD+//b/AwACAAAAAAD9//b/AwABAAAAAAD9//X/AwAAAAAAAAD+//X/AwAAAAAAAAD///X/AwAAAAAAAAACAPX/AwAAAAAAAAADAPX/AwAAAAAAAAAEAPX/AwAAAAAAAAAEAPf/AwAAAAAAAAADAPf/AwAAAAAAAAACAPf/AwAAAAAAAAABAPf/AwAAAAAAAAAAAPf/AwAAAAAAAAD///f/AwAAAAAAAAD9//f/AwAAAAAAAAD+//j/AwACAAAAAAD///j/AwADAAAAAAAAAPj/AwAAAAAAAAABAPj/AwAAAAAAAAACAPj/AwABAAAAAAADAPj/AwACAAAAAAAEAPj/AwADAAAAAAA=")
+tile_set = SubResource("TileSet_fravh")
+use_kinematic_bodies = true
+
+[node name="Enemy2D2" parent="Background/TileMapLayer" instance=ExtResource("3_52fcv")]
+position = Vector2(506, 82.9994)
+scale = Vector2(0.999998, 0.999999)
+
+[node name="CharacterBody2D" parent="Background/TileMapLayer" groups=["Player"] instance=ExtResource("2_judhh")]
+position = Vector2(94.0001, 597)
+
+[node name="Enemy2D" parent="Background/TileMapLayer" instance=ExtResource("3_52fcv")]
+position = Vector2(-222, 53.9994)
+scale = Vector2(0.999999, 1)
+
+[node name="Enemy2D3" parent="Background/TileMapLayer" instance=ExtResource("3_52fcv")]
+position = Vector2(-241.999, -256)
+scale = Vector2(0.999999, 1)
+
+[node name="Enemy2D4" parent="Background/TileMapLayer" instance=ExtResource("3_52fcv")]
+position = Vector2(564, -258)
+scale = Vector2(0.999999, 1)
+
+[node name="Enemy2D5" parent="Background/TileMapLayer" instance=ExtResource("3_52fcv")]
+position = Vector2(-199.5, -1662)
+scale = Vector2(0.999999, 1)
+
+[node name="Enemy2D6" parent="Background/TileMapLayer" instance=ExtResource("3_52fcv")]
+position = Vector2(-193.5, -1085)
+scale = Vector2(0.999999, 1)
+
+[node name="Enemy2D7" parent="Background/TileMapLayer" instance=ExtResource("3_52fcv")]
+position = Vector2(453.5, -1620)
+scale = Vector2(0.999999, 1)
+
+[node name="Enemy2D8" parent="Background/TileMapLayer" instance=ExtResource("3_52fcv")]
+position = Vector2(478.5, -1077)
+scale = Vector2(0.999999, 1)

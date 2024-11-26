@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://2xg4tn6ln4jy"]
+
+[ext_resource type="Script" path="res://gameover.gd" id="1_h3iqh"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h3iqh")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 1152.0
+offset_bottom = 648.0
+text = "YOU DIED."
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Restart" type="Button" parent="."]
+layout_mode = 0
+offset_left = 443.0
+offset_top = 360.0
+offset_right = 557.0
+offset_bottom = 391.0
+text = "Restart Game"
+
+[node name="Exit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 592.0
+offset_top = 362.0
+offset_right = 679.0
+offset_bottom = 393.0
+text = "Exit Game"
+
+[connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]

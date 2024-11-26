@@ -1,0 +1,152 @@
+[gd_scene load_steps=13 format=3 uid="uid://b4q1nxvw64nl2"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_e0trg"]
+[ext_resource type="Texture2D" uid="uid://6yi0uqdeosdr" path="res://sprites/sprite_sheet.png" id="2_rehy0"]
+[ext_resource type="Script" path="res://scripts/myhitbox.gd" id="3_nmtl0"]
+[ext_resource type="Script" path="res://scripts/myhurtbox.gd" id="4_ad0b4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rpg5v"]
+size = Vector2(13.7143, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j6b7i"]
+size = Vector2(29, 58)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eggu3"]
+size = Vector2(41, 60)
+
+[sub_resource type="Animation" id="Animation_3orig"]
+resource_name = "Attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.466667, 0.7, 0.933333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [5, 0, 1, 0, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/HitBox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_g31wy"]
+resource_name = "Idle"
+length = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_3ctlt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/HitBox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_05yl0"]
+resource_name = "Walk"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ffgu4"]
+_data = {
+"Attack": SubResource("Animation_3orig"),
+"Idle": SubResource("Animation_g31wy"),
+"RESET": SubResource("Animation_3ctlt"),
+"Walk": SubResource("Animation_05yl0")
+}
+
+[node name="Player2D" type="CharacterBody2D"]
+position = Vector2(307, 245)
+script = ExtResource("1_e0trg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(7, 0)
+scale = Vector2(3.5, 3.5)
+shape = SubResource("RectangleShape2D_rpg5v")
+one_way_collision_margin = 5.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.25, 1.25)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_rehy0")
+hframes = 3
+vframes = 2
+
+[node name="HitBox" type="Area2D" parent="Sprite2D"]
+script = ExtResource("3_nmtl0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/HitBox"]
+visible = false
+position = Vector2(63.5, 4)
+shape = SubResource("RectangleShape2D_j6b7i")
+disabled = true
+
+[node name="HurtBox" type="Area2D" parent="Sprite2D"]
+script = ExtResource("4_ad0b4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/HurtBox"]
+visible = false
+position = Vector2(6.5, -1)
+shape = SubResource("RectangleShape2D_eggu3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ffgu4")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
