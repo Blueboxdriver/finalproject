@@ -1,3 +1,4 @@
+# Thank you to 'GDQuest' for this code: https://www.youtube.com/watch?v=JWjzSn95bM0
 class_name HitBox
 extends Area2D
 
