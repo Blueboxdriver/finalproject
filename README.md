@@ -6,4 +6,4 @@ Left click - Attack
 
 Instructions for installation: 
 
-Clone repository and import the project using the .project file
+Pull the repo and run the windowsrunnable.exe
